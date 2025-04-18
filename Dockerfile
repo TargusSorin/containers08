@@ -16,4 +16,4 @@ RUN echo "prepare database" && \
 
 COPY site /var/www/html
 
-COPY test /var/www/html/tests
+COPY tests /var/www/html/tests
