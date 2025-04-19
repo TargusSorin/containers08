@@ -14,4 +14,4 @@ RUN echo "prepare database" && \
     rm -rf /var/www/db/schema.sql && \
     echo "database is ready"
 
-COPY site /var/www/html
+COPY site /var/www/html/site
