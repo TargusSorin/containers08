@@ -8,7 +8,6 @@ require_once __DIR__ . '/../site/modules/page.php';
 
 $tests = new TestFramework();
 
-// test 1: check database connection
 function testDbConnection() {
     global $config;
     
@@ -20,7 +19,6 @@ function testDbConnection() {
     }
 }
 
-// test 2: test count method
 function testDbCount() {
     global $config;
     
@@ -30,7 +28,6 @@ function testDbCount() {
     return is_int($count) && $count >= 0;
 }
 
-// test 3: test create method
 function testDbCreate() {
     global $config;
     
@@ -38,11 +35,7 @@ function testDbCreate() {
     
     $data = [
         'title' => 'Test Page',
-        'subtitle' => 'Created for Testing',
-        'content' => '<p>This is a test page content.</p>',
-        'author' => 'Test Framework',
-        'date' => date('d F Y'),
-        'year' => date('Y')
+        'content' => '<p>This is a test page content.</p>'
     ];
     
     $id = $db->Create("page", $data);
@@ -50,19 +43,14 @@ function testDbCreate() {
     return is_numeric($id) && $id > 0;
 }
 
-// test 4: test read method
 function testDbRead() {
     global $config;
     
     $db = new Database($config["db"]["path"]);
     
     $data = [
-        'title' => 'Page for Read Test',
-        'subtitle' => 'Testing Read',
-        'content' => '<p>Testing the read functionality.</p>',
-        'author' => 'Test Framework',
-        'date' => date('d F Y'),
-        'year' => date('Y')
+        'title' => 'Test Page',
+        'content' => '<p>This is a test page content.</p>'
     ];
     
     $id = $db->Create("page", $data);
@@ -72,20 +60,14 @@ function testDbRead() {
     return is_array($result) && $result['title'] === 'Page for Read Test';
 }
 
-// test 5: test update method
 function testDbUpdate() {
     global $config;
     
     $db = new Database($config["db"]["path"]);
     
-    // First create a test record
     $data = [
-        'title' => 'Original Title',
-        'subtitle' => 'Original Subtitle',
-        'content' => '<p>Original content.</p>',
-        'author' => 'Original Author',
-        'date' => date('d F Y'),
-        'year' => date('Y')
+        'title' => 'Test Page',
+        'content' => '<p>This is a test page content.</p>'
     ];
     
     $id = $db->Create("page", $data);
@@ -102,19 +84,14 @@ function testDbUpdate() {
     return $result['title'] === 'Updated Title' && $result['subtitle'] === 'Updated Subtitle';
 }
 
-// test 6: test delete method
 function testDbDelete() {
     global $config;
     
     $db = new Database($config["db"]["path"]);
     
     $data = [
-        'title' => 'Page to Delete',
-        'subtitle' => 'Testing Delete',
-        'content' => '<p>This page should be deleted.</p>',
-        'author' => 'Test Framework',
-        'date' => date('d F Y'),
-        'year' => date('Y')
+        'title' => 'Test Page',
+        'content' => '<p>This is a test page content.</p>'
     ];
     
     $id = $db->Create("page", $data);
@@ -126,7 +103,6 @@ function testDbDelete() {
     return $result === true && empty($readResult);
 }
 
-// test 7: test execute method
 function testDbExecute() {
     global $config;
     
@@ -137,7 +113,6 @@ function testDbExecute() {
     return $result !== false;
 }
 
-// test 8: test fetch method
 function testDbFetch() {
     global $config;
     
@@ -148,7 +123,6 @@ function testDbFetch() {
     return is_array($result) && count($result) > 0;
 }
 
-// test 9: test page constructor
 function testPageConstructor() {
     try {
         $page = new Page(__DIR__ . '/../templates/index.tpl');
@@ -158,17 +132,12 @@ function testPageConstructor() {
     }
 }
 
-// test 10: test page render method
 function testPageRender() {
     $page = new Page(__DIR__ . '/../templates/index.tpl');
     
     $data = [
-        'title' => 'Test Title',
-        'subtitle' => 'Test Subtitle',
-        'content' => '<p>Test content.</p>',
-        'author' => 'Test Author',
-        'date' => '18 April 2025',
-        'year' => '2025'
+        'title' => 'Test Page',
+        'content' => '<p>This is a test page content.</p>'
     ];
     
     $rendered = $page->Render($data);
@@ -178,22 +147,19 @@ function testPageRender() {
            strpos($rendered, 'Test content') !== false;
 }
 
-// test 11: test page render with invalid template
 function testPageRenderInvalidData() {
     $page = new Page(__DIR__ . '/../templates/index.tpl');
     
-    // Test with non-array data
     $data = "This is not an array";
     
     try {
         $page->Render($data);
-        return true; // Should not crash
+        return true; 
     } catch (Exception $e) {
         return false;
     }
 }
 
-// add tests
 $tests->add('Database connection', 'testDbConnection');
 $tests->add('Database count method', 'testDbCount');
 $tests->add('Database create method', 'testDbCreate');
@@ -206,7 +172,6 @@ $tests->add('Page constructor', 'testPageConstructor');
 $tests->add('Page render method', 'testPageRender');
 $tests->add('Page render with invalid data', 'testPageRenderInvalidData');
 
-// run tests
 $tests->run();
 
 echo $tests->getResult();

@@ -13,19 +13,14 @@
     
     <main>
         <div class="content">
-            <h2>{{subtitle}}</h2>
             <div class="page-content">
                 {{content}}
-            </div>
-            <div class="metadata">
-                <p>Autor: {{author}}</p>
-                <p>Data publicării: {{date}}</p>
             </div>
         </div>
     </main>
     
     <footer>
-        <p>&copy; {{year}} - Toate drepturile rezervate</p>
+        <p>&copy; <?php echo date('Y'); ?> - Toate drepturile rezervate</p>
     </footer>
 </body>
 </html>

@@ -20,11 +20,7 @@ $data = $db->Read("page", $pageId);
 if (!$data) {
     $data = [
         'title' => 'Pagină negăsită',
-        'subtitle' => 'Eroare 404',
-        'content' => '<p>Pagina solicitată nu există.</p>',
-        'author' => 'Sistem',
-        'date' => date('d F Y'),
-        'year' => date('Y')
+        'content' => '<p>Pagina solicitată nu există.</p>'
     ];
 }
 

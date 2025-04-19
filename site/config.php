@@ -15,21 +15,8 @@ if (!file_exists($config["db"]["path"])) {
         $db = new PDO("sqlite:" . $config["db"]["path"]);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        $db->exec("CREATE TABLE IF NOT EXISTS page (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT NULL,
-            subtitle TEXT,
-            content TEXT,
-            author TEXT,
-            date TEXT,
-            year TEXT
-        )");
-        
-        $db->exec("INSERT INTO page (title, subtitle, content, author, date, year) 
-            VALUES ('Bine ați venit', 'Pagina de start', 
-            '<p>Aceasta este o pagină de exemplu pentru a demonstra funcționalitatea aplicației.</p>
-            <p>Editați conținutul paginii pentru a personaliza site-ul dumneavoastră.</p>', 
-            'Administrator', '17 Aprilie 2025', '2025')");
+        $sqlSchema = file_get_contents(__DIR__ . '/../sql/schema.sql');
+        $db->exec($sqlSchema);
             
     } catch (PDOException $e) {
         die("Eroare la crearea bazei de date: " . $e->getMessage());
