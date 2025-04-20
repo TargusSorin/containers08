@@ -74,14 +74,14 @@ function testDbUpdate() {
     
     $updateData = [
         'title' => 'Updated Title',
-        'content' => '<p>Updated content</p>'
+        'content' => '<p>Updated content.</p>'
     ];
     
     $db->Update("page", $id, $updateData);
     
     $result = $db->Read("page", $id);
     
-    return $result['title'] === 'Updated Title' && $result['content'] === 'Updated content';
+    return $result['title'] === 'Updated Title' && $result['content'] === '<p>Updated content.</p>';
 }
 
 function testDbDelete() {
@@ -165,6 +165,7 @@ $tests->add('Database create method', 'testDbCreate');
 $tests->add('Database read method', 'testDbRead');
 $tests->add('Database update method', 'testDbUpdate');
 $tests->add('Database delete method', 'testDbDelete');
+$tests->add('Database execute method', 'testDbExecute');
 $tests->add('Database fetch method', 'testDbFetch');
 $tests->add('Page constructor', 'testPageConstructor');
 $tests->add('Page render method', 'testPageRender');
