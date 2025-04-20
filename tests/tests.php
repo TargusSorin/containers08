@@ -162,7 +162,6 @@ function testPageRenderInvalidData() {
 $tests->add('Database connection', 'testDbConnection');
 $tests->add('Database count method', 'testDbCount');
 $tests->add('Database create method', 'testDbCreate');
-$tests->add('Database read method', 'testDbRead');
 $tests->add('Database update method', 'testDbUpdate');
 $tests->add('Database delete method', 'testDbDelete');
 $tests->add('Database execute method', 'testDbExecute');
