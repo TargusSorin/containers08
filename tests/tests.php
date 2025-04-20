@@ -74,14 +74,14 @@ function testDbUpdate() {
     
     $updateData = [
         'title' => 'Updated Title',
-        'subtitle' => 'Updated Subtitle'
+        'content' => 'Updated content'
     ];
     
     $db->Update("page", $id, $updateData);
     
     $result = $db->Read("page", $id);
     
-    return $result['title'] === 'Updated Title' && $result['subtitle'] === 'Updated Subtitle';
+    return $result['title'] === 'Updated Title' && $result['content'] === 'Updated content';
 }
 
 function testDbDelete() {
