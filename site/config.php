@@ -15,7 +15,7 @@ if (!file_exists($config["db"]["path"])) {
         $db = new PDO("sqlite:" . $config["db"]["path"]);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        $sqlSchema = file_get_contents(__DIR__ . '/../sql/schema.sql');
+        $sqlSchema = file_get_contents(__DIR__ . '/sql/schema.sql');
         $db->exec($sqlSchema);
             
     } catch (PDOException $e) {
