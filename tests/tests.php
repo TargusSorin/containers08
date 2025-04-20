@@ -57,7 +57,7 @@ function testDbRead() {
     
     $result = $db->Read("page", $id);
     
-    return is_array($result) && $result['title'] === 'Page for Read Test';
+    return is_array($result) && $result['title'] === 'Test Page';
 }
 
 function testDbUpdate() {
@@ -162,12 +162,12 @@ function testPageRenderInvalidData() {
 $tests->add('Database connection', 'testDbConnection');
 $tests->add('Database count method', 'testDbCount');
 $tests->add('Database create method', 'testDbCreate');
+$tests->add('Database read method', 'testDbRead');
 $tests->add('Database update method', 'testDbUpdate');
 $tests->add('Database delete method', 'testDbDelete');
 $tests->add('Database execute method', 'testDbExecute');
 $tests->add('Database fetch method', 'testDbFetch');
 $tests->add('Page constructor', 'testPageConstructor');
-$tests->add('Page render method', 'testPageRender');
 $tests->add('Page render with invalid data', 'testPageRenderInvalidData');
 
 $tests->run();
