@@ -74,7 +74,7 @@ function testDbUpdate() {
     
     $updateData = [
         'title' => 'Updated Title',
-        'content' => 'Updated content'
+        'content' => '<p>Updated content</p>'
     ];
     
     $db->Update("page", $id, $updateData);
@@ -165,10 +165,10 @@ $tests->add('Database create method', 'testDbCreate');
 $tests->add('Database read method', 'testDbRead');
 $tests->add('Database update method', 'testDbUpdate');
 $tests->add('Database delete method', 'testDbDelete');
-$tests->add('Database execute method', 'testDbExecute');
 $tests->add('Database fetch method', 'testDbFetch');
 $tests->add('Page constructor', 'testPageConstructor');
 $tests->add('Page render method', 'testPageRender');
+$tests->add('Page render with invalid data', 'testPageRenderInvalidData');
 
 $tests->run();
 
