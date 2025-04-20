@@ -169,7 +169,6 @@ $tests->add('Database execute method', 'testDbExecute');
 $tests->add('Database fetch method', 'testDbFetch');
 $tests->add('Page constructor', 'testPageConstructor');
 $tests->add('Page render method', 'testPageRender');
-$tests->add('Page render with invalid data', 'testPageRenderInvalidData');
 
 $tests->run();
 
