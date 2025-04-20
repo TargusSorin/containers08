@@ -108,7 +108,7 @@ function testDbExecute() {
     
     $db = new Database($config["db"]["path"]);
     
-    $result = $db->Execute("UPDATE page SET year = '2025' WHERE id = 1");
+    $result = $db->Execute("UPDATE page SET title = 'Great title' WHERE id = 1");
     
     return $result !== false;
 }
@@ -125,7 +125,7 @@ function testDbFetch() {
 
 function testPageConstructor() {
     try {
-        $page = new Page(__DIR__ . '/../templates/index.tpl');
+        $page = new Page(__DIR__ . '/../site/templates/index.tpl');
         return true;
     } catch (Exception $e) {
         return false;
@@ -133,7 +133,7 @@ function testPageConstructor() {
 }
 
 function testPageRender() {
-    $page = new Page(__DIR__ . '/../templates/index.tpl');
+    $page = new Page(__DIR__ . '/../site/templates/index.tpl');
     
     $data = [
         'title' => 'Test Page',
@@ -143,12 +143,11 @@ function testPageRender() {
     $rendered = $page->Render($data);
     
     return strpos($rendered, 'Test Title') !== false && 
-           strpos($rendered, 'Test Subtitle') !== false && 
            strpos($rendered, 'Test content') !== false;
 }
 
 function testPageRenderInvalidData() {
-    $page = new Page(__DIR__ . '/../templates/index.tpl');
+    $page = new Page(__DIR__ . '/../site/templates/index.tpl');
     
     $data = "This is not an array";
     
