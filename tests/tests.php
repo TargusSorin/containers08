@@ -142,8 +142,8 @@ function testPageRender() {
     
     $rendered = $page->Render($data);
     
-    return strpos($rendered, 'Test Title') !== false && 
-           strpos($rendered, 'Test content') !== false;
+    return strpos($rendered, 'Test Page') !== false && 
+           strpos($rendered, 'This is a test page content.') !== false;
 }
 
 function testPageRenderInvalidData() {
@@ -168,6 +168,7 @@ $tests->add('Database delete method', 'testDbDelete');
 $tests->add('Database execute method', 'testDbExecute');
 $tests->add('Database fetch method', 'testDbFetch');
 $tests->add('Page constructor', 'testPageConstructor');
+$tests->add('Page render method', 'testPageRender');
 $tests->add('Page render with invalid data', 'testPageRenderInvalidData');
 
 $tests->run();
